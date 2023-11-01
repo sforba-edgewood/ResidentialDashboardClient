@@ -1,0 +1,108 @@
+{
+    "fields": [
+        {
+            "label": "Inspect front entry, curb appeal, marketing window and office to ensure it is clutter free & meets expectations (neat, clean, working)",
+            "name": "field_1"
+        },
+        {
+            "label": "Ensure team adheres to our corporate apparel guidelines, 3 P's (Pressed, Polished and Professional) with nametag",
+            "name": "field_2"
+        },
+        {
+            "label": "Inspect coffee bars and ensure they are stocked and cleaned ",
+            "name": "field_3"
+        },
+        {
+            "label": "Hold Morning Huddle with entire team to motivate team and ensure expectations are set for the day (discuss any obstacles such as pricing, leasing goals, etc.) * Document on the notes portion of the AM/PM Checklist",
+            "name": "field_4"
+        },
+        {
+            "label": "Ensure punctual attendance, daily punches in ADP, document as needed",
+            "name": "field_5"
+        },
+        {
+            "label": "Ensure team is opening model/tour apts so your store is ready to open. ",
+            "name": "field_6"
+        },
+        {
+            "label": "Ensure team is entering and closing service requests to sparkle model and 5 vacant units per day. ",
+            "name": "field_7"
+        },
+        {
+            "label": "Ensure AM/PM Checklist is completed and saved in the P drive",
+            "name": "field_8"
+        },
+        {
+            "label": "Meet with your Maintenance Manager/Supervisor to discuss property needs and activity for the day.  ",
+            "name": "field_9"
+        },
+        {
+            "label": "Update leasing goals board and pending Move ins and Move outs (Should have a white board in the backroom)",
+            "name": "field_10"
+        },
+        {
+            "label": "Review any outstanding customer service issues",
+            "name": "field_11"
+        },
+        {
+            "label": "Review today's activities (MI's, MO's, scheduled tours) and schedule lunch breaks accordingly",
+            "name": "field_12"
+        },
+        {
+            "label": "Review lease expirations for your property ",
+            "name": "field_13"
+        },
+        {
+            "label": "Review pending renewals for countersignature ",
+            "name": "field_14"
+        },
+        {
+            "label": "Review pending move ins for countersignature",
+            "name": "field_15"
+        },
+        {
+            "label": "Ensure 3 Craigslist Postings are completed",
+            "name": "field_16"
+        },
+        {
+            "label": "Review open Service Requests-work with MM to resolve aged SR's. ",
+            "name": "field_17"
+        },
+        {
+            "label": "Ensure all open leads are contacted by day of day",
+            "name": "field_18"
+        },
+        {
+            "label": "Ensure all pending tasks are completed by end of day and date will advance in One Site",
+            "name": "field_19"
+        },
+        {
+            "label": "Ensure all VM and Email messages are returned by end of day",
+            "name": "field_20"
+        },
+        {
+            "label": "Audit 5 random guest cards of past tours for minimum of 2 Follow-Ups (phone and email) per Leasing Consultant. Document findings as needed.",
+            "name": "field_21"
+        },
+        {
+            "label": "Review all notice to vacates given and place call to save resident",
+            "name": "field_22"
+        },
+        {
+            "label": "Communities under 95% occupied to send daily leasing recap ",
+            "name": "field_23"
+        },
+        {
+            "label": "Ensure you have posted on IG & Facebook",
+            "name": "field_24"
+        },
+        {
+            "label": "Review J Turner and ensure all reviews have been responded to",
+            "name": "field_25"
+        },
+        {
+            "label": "Review Pending PO's",
+            "name": "field_26"
+        }
+    ]
+}
