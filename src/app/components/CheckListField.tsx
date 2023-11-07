@@ -1,13 +1,16 @@
 import { Button, Card, Title, Text, Switch, } from "@tremor/react";
-import { useState } from "react";
+import { useState} from "react";
+
 
 const CheckListField = (props: any) => {
-    const {label, name} = props || {};
-    
+    const {label, name, updateForm} = props || {};
+
+
     const [isSwitchOn, setIsSwitchOn] = useState<boolean>(false);
 
     const handleSwitchChange = (value: boolean) => {
       setIsSwitchOn(value);
+      updateForm();
     };
 
     return(

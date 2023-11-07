@@ -1,0 +1,104 @@
+{
+    "fields": [
+        {
+            "label": "Set weekly leasing goals with staff and update goal board",
+            "name": "field_1"
+        },
+        {
+            "label": "Audit all websites to review accuracy of information once per week ",
+            "name": "field_2"
+        },
+        {
+            "label": "Approve payroll by 10 am on Monday morning. Ensure all OT are previously approved by RPM. Approve ADP. All punch edits need to have punch edit form as backup and filed on site. All approved RTO should be sent to HR.",
+            "name": "field_3"
+        },
+        {
+            "label": "Walk and inspect tour path and model personally on Tuesday and Friday.",
+            "name": "field_4"
+        },
+        {
+            "label": "Model, Common Areas, & Hot List apts meet expectations from office to apartment and our common areas (5 senses, mini models). Leave No Trace of trash on grounds or tour path (no cigarette butts, dog poop, ash trays clean and full of sand if applicable, no hoses left out, trash areas clean, mail box areas free of flyers and staples, community boards with timely messages, pool furniture lined like a resort.  No lights out or missing.  Leasing team should be ensuring we meet this expectation daily.  Enter maintenance related discrepancies that consultants cannot do themselves as Service Requests.",
+            "name": "field_5"
+        },
+        {
+            "label": "Walk and inspect all amenity areas and section of community with Maintenance partner. Compile action items for next week’s meeting as follow-up items",
+            "name": "field_6"
+        },
+        {
+            "label": "Hold and document 1:1 meeting with Maintenance partner. Save agenda for shared folder for RPM and RMM to review",
+            "name": "field_7"
+        },
+        {
+            "label": "Prepare for Weekly Office Team Meeting & Complete Weekly Meeting Template with Agenda",
+            "name": "field_8"
+        },
+        {
+            "label": "Hold 1:1 meeting with your team. Document agenda ",
+            "name": "field_9"
+        },
+        {
+            "label": "Review status of renewals report for current month and next month. Ensure team is calling residents up for renewal weekly.",
+            "name": "field_10"
+        },
+        {
+            "label": "Ensure all new apps are submitted to lease audit team for approval within 72 hrs of application date",
+            "name": "field_11"
+        },
+        {
+            "label": "Ensure all new applications taken have leases executed within 7 days of application",
+            "name": "field_12"
+        },
+        {
+            "label": "Ensure the FAS are being processed timely (10 days from move out)",
+            "name": "field_13"
+        },
+        {
+            "label": "Verify sparkle kit is stocked and office team wiping down/replacing bulbs in apts as needed",
+            "name": "field_14"
+        },
+        {
+            "label": "Review Reports",
+            "name": "field_15"
+        },
+        {
+            "label": "Ensure Preferred Employer Program spreadsheet is updated and 1 new PEP is secured weekly",
+            "name": "field_16"
+        },
+        {
+            "label": "Review Office and Breakfast inventory levels and plan/order accordingly",
+            "name": "field_17"
+        },
+        {
+            "label": "Inspect that Leasing Consultants are properly completing the M/I inspection sheets before M/I and that move in packets are ready for current weeks move ins.",
+            "name": "field_18"
+        },
+        {
+            "label": "Shadow one leasing tour per Leasing Consultant",
+            "name": "field_19"
+        },
+        {
+            "label": "Review aged service requests-escalate to RPM and RMM as needed, also review open make readies and average turn times",
+            "name": "field_20"
+        },
+        {
+            "label": "Review Renter’s Insurance report, send out follow up letters/calls as needed for expired/no insurance",
+            "name": "field_21"
+        },
+        {
+            "label": "Review resumes in ICIMS if you have open position(s) to fill/contact Recruiting as needed",
+            "name": "field_22"
+        },
+        {
+            "label": "Update the Open Positions spreadsheet in the Residential PMD folder ",
+            "name": "field_23"
+        },
+        {
+            "label": "Complete weekly leasing activity report by COB Saturday",
+            "name": "field_24"
+        },
+        {
+            "label": "Complete Weekly Occupancy Report and 30/60/90 renewal update",
+            "name": "field_25"
+        }
+    ]
+}
