@@ -10,7 +10,7 @@ const CheckListField = (props: any) => {
 
     const handleSwitchChange = (value: boolean) => {
       setIsSwitchOn(value);
-      updateForm();
+      updateForm(name);
     };
 
     return(

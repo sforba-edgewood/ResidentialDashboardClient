@@ -1,19 +1,31 @@
 import CheckListField from "./CheckListField";
-import {fields} from '../../../schema/daily_checklist.json';
+// import {fields} from '../../../schema/daily_checklist.json';
 import { Grid, Col } from "@tremor/react";
 import { Button } from "@tremor/react";
 import NotesField from "./NotesField";
 import { useContext } from "react";
 import { ChecklistContext } from "../providers/checklist_provider";
 
-const CheckListForm = (formType: String) => {
+const CheckListForm = props => {
+    const {formType} = props || {};
     const context = useContext(ChecklistContext);
-    const {setValues} = context || {};
+    const {setValues, formSchema} = context || {};
+    const schema = formSchema?.filter((data) => data?.type === formType) && formSchema?.filter((data) => data?.type === formType)[0];
+    const {fields} = schema || {};
 
-    const updateForm = () => {
-        console.log('update form');
-        setValues({});
-    }
+    const updateForm = (name: String) => {
+        let updatedFields = fields;
+        updatedFields && updatedFields.forEach((field) => {
+            if(field?.name === name) {
+                if(field['value']  === false) {
+                    field['value'] = false;
+                } else {
+                    field['value'] = true;
+                }
+            }
+        });
+        setValues(updatedFields)
+    }   
 
     const renderFields = () => {
         return fields && fields.map((field)=> {

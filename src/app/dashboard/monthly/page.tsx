@@ -10,7 +10,7 @@ export default function Index() {
         Monthly Checklist
       </Metric>
       <ChecklistProvider>
-        <CheckListForm formType={'monthly'}/>
+        <CheckListForm formType={'MONTHLY'}/>
       </ChecklistProvider>
     </main>
   )
