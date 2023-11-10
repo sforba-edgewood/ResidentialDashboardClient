@@ -1,21 +1,18 @@
 import CheckListField from "./CheckListField";
-// import {fields} from '../../../schema/daily_checklist.json';
 import { Grid, Col } from "@tremor/react";
 import { Button } from "@tremor/react";
 import NotesField from "./NotesField";
 import { useContext } from "react";
 import { ChecklistContext } from "../providers/checklist_provider";
 
-const CheckListForm = props => {
-    const {formType} = props || {};
+const CheckListForm = () => {
     const context = useContext(ChecklistContext);
-    const {setValues, formSchema} = context || {};
-    const schema = formSchema?.filter((data) => data?.type === formType) && formSchema?.filter((data) => data?.type === formType)[0];
-    const {fields} = schema || {};
+    const {setValues, formSchema, postDraftToAPI, postChecklistToAPI } = context || {};
+
 
     const updateForm = (name: String) => {
-        let updatedFields = fields;
-        updatedFields && updatedFields.forEach((field) => {
+        let updatedFields = formSchema;
+        updatedFields && updatedFields.forEach((field: any) => {
             if(field?.name === name) {
                 if(field['value']  === false) {
                     field['value'] = false;
@@ -24,13 +21,23 @@ const CheckListForm = props => {
                 }
             }
         });
-        setValues(updatedFields)
+        setValues(updatedFields);
     }   
+    
+    const handleDraftButtonClick = (e) => {
+        e.preventDefault();
+        postDraftToAPI();
+    }
+
+    const handleSubmitButtonClick = (e) => {
+        e.preventDefault();
+        postChecklistToAPI();
+    }
 
     const renderFields = () => {
-        return fields && fields.map((field)=> {
+        return formSchema && formSchema.map((field: any)=> {
             return (
-                <fieldset>
+                <fieldset key={field?.name}>
                     <CheckListField {...field} updateForm={updateForm}/>
                 </fieldset>
 
@@ -44,8 +51,8 @@ const CheckListForm = props => {
             </Grid>
             <NotesField />
             <div className="flex flex-row justify-center py-4">
-                <Button size="xl" className="mx-2">Save to Drafts</Button>
-                <Button size="xl"className="mx-2">Submit</Button>
+                <Button onClick={handleDraftButtonClick} size="xl" className="mx-2">Save to Drafts</Button>
+                <Button onClick={handleSubmitButtonClick } size="xl"className="mx-2">Submit</Button>
             </div>
         </form>
     );

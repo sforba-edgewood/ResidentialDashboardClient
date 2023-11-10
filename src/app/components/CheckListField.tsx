@@ -1,6 +1,6 @@
+'use client';
 import { Button, Card, Title, Text, Switch, } from "@tremor/react";
 import { useState} from "react";
-
 
 const CheckListField = (props: any) => {
     const {label, name, updateForm} = props || {};
