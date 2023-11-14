@@ -1,11 +1,14 @@
 'use client';
+import { useRouter } from 'next/navigation';
 import { createContext,  useState, useEffect } from 'react';
 export const AuthContext = createContext({});
 
 export const AuthProvider = props => {
+    const router = useRouter();
     const [authenticated, setAuthenticated] = useState(false);
     const [email, setEmail]  = useState('');
     const [password, setPassword] = useState('');
+    const [loginError, setLoginError] = useState(false);
 
     const login = async () => {
         try {
@@ -17,19 +20,28 @@ export const AuthProvider = props => {
                 },
                 body: JSON.stringify({email, password})
             });
-
-            console.log(response);
+            
+            if(response.status === 401) {
+                setLoginError(true);
+            } else {
+                router.push('/dashboard/daily')
+            }
             
         } catch(e) {
-            console.log(e);
+            console.error('error: ', e);
+            setLoginError(true);
         }
     }
 
     const register = async () => {
 
     }
+
+    const forgotPassword = async () => {
+    }
+
     return(
-        <AuthContext.Provider value={{authenticated, setAuthenticated, setEmail, setPassword, login, register}}>
+        <AuthContext.Provider value={{authenticated, loginError, setLoginError, setAuthenticated, setEmail, setPassword, login, register}}>
             {props.children}
         </AuthContext.Provider>
     );

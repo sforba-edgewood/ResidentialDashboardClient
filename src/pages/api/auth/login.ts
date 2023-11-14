@@ -6,6 +6,7 @@ export default async function handler(
   res: NextApiResponse
 ) {
   try {
+
     const serverResponse= await fetch( "http://localhost:8000/api/login", {
         method: "POST",
         mode: "cors", // no-cors, *cors, same-origin
@@ -17,9 +18,12 @@ export default async function handler(
         body: JSON.stringify(req.body), 
     }).then((responseData)=>{ 
       return responseData.json();
+    }).catch((e)=> {
+      console.log('e: ',e);
+      return e;
     });
-
-    if(serverResponse.status === 200) {
+    console.log(serverResponse);
+    if(serverResponse?.message === 'success') {
 
       res.setHeader(
           'Set-Cookie',
@@ -31,6 +35,9 @@ export default async function handler(
           })
       );
       res.status(200).json({ message:"success" , error: null });
+      
+    } else {
+      res.status(401).json({ message:"error" , error: true });
     }
   } catch (err) {
     console.error(err)

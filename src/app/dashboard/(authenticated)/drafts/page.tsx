@@ -1,5 +1,5 @@
 'use client';
-import DraftsTable from "@/app/components/DraftsTable";
+import DraftsTable from "@/app/dashboard/components/DraftsTable";
 import { Metric } from "@tremor/react";
 export default function Index() {
 

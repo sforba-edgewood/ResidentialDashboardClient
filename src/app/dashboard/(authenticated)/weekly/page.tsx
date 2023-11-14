@@ -1,6 +1,6 @@
 'use client';
 import {ChecklistProvider} from "@/app/providers/checklist_provider";
-import CheckListForm from "@/app/components/CheckListForm";
+import CheckListForm from "@/app/dashboard/components/CheckListForm";
 import { Metric } from "@tremor/react";
 
 export default function Index() {
@@ -9,7 +9,7 @@ export default function Index() {
       <Metric className="container text-center py-10">
         Weekly Checklist
       </Metric>
-      <ChecklistProvider formType={'WEEKLY'}>
+      <ChecklistProvider>
         <CheckListForm />
       </ChecklistProvider>
     </main>

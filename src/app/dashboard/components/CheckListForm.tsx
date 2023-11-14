@@ -1,18 +1,23 @@
 import CheckListField from "./CheckListField";
+import { usePathname } from 'next/navigation';
 import { Grid, Col } from "@tremor/react";
 import { Button } from "@tremor/react";
 import NotesField from "./NotesField";
 import { useContext } from "react";
-import { ChecklistContext } from "../providers/checklist_provider";
+import { ChecklistContext } from "../../providers/checklist_provider";
+import { SchemaContext } from "@/app/providers/schema_provider";
 
 const CheckListForm = () => {
-    const context = useContext(ChecklistContext);
-    const {setValues, formSchema, postDraftToAPI, postChecklistToAPI } = context || {};
-
-
+    const pathname = usePathname();
+    const formType = pathname?.split('/') && pathname?.split('/')[2];
+    const checklist_context = useContext(ChecklistContext);
+    const schema_context = useContext(SchemaContext);
+    const {formSchema} = schema_context || {};
+    const {setValues, postDraftToAPI, postChecklistToAPI } = checklist_context || {};
+    
     const updateForm = (name: String) => {
-        let updatedFields = formSchema;
-        updatedFields && updatedFields.forEach((field: any) => {
+        let updatedFields = formSchema &&  formSchema[formType] && formSchema[formType].fields;
+        updatedFields && updatedFields?.forEach((field: any) => {
             if(field?.name === name) {
                 if(field['value']  === false) {
                     field['value'] = false;
@@ -35,7 +40,7 @@ const CheckListForm = () => {
     }
 
     const renderFields = () => {
-        return formSchema && formSchema.map((field: any)=> {
+        return formSchema && formSchema[formType] && formSchema[formType].fields.map((field: any)=> {
             return (
                 <fieldset key={field?.name}>
                     <CheckListField {...field} updateForm={updateForm}/>
