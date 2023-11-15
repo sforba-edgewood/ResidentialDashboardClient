@@ -1,21 +1,23 @@
-import type { NextApiRequest, NextApiResponse } from 'next'
+import type { NextApiRequest, NextApiResponse } from 'next';
+import { cookies } from 'next/headers';
  
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
   try {
-    const serverResponse = await fetch( "http://localhost:8000/api/logout", {
-        method: "POST",
-        mode: "cors", // no-cors, *cors, same-origin
-        cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
-        credentials: "same-origin", // include, *same-origin, omit
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(req.body), 
-    });
+    const cookieStore = cookies();
+    const accessToken = cookieStore.get('accessToken');
+
+    if(accessToken) {
+      console.log(cookieStore)
+      cookieStore.delete('accessToken');
+
+      res.status(200).json({message: 'success',data: null, error: null });
+    } else {
+      res.status(401).json({message: 'failed',data: null, error: "already logged out"});
+    }
   } catch (err) {
-    res.status(500).json({ error: 'failed to load data' });
+    res.status(500).json({ error: err});
   }
 }
