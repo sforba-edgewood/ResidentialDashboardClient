@@ -12,7 +12,6 @@ export const AuthProvider = props => {
 
     const login = async () => {
         try {
-            
             const response = await fetch("/api/auth/login", {
                 method: 'POST',
                 headers: {
@@ -41,7 +40,7 @@ export const AuthProvider = props => {
     }
 
     return(
-        <AuthContext.Provider value={{authenticated, loginError, setLoginError, setAuthenticated, setEmail, setPassword, login, register}}>
+        <AuthContext.Provider value={{loginError, setLoginError, setEmail, setPassword, login, register}}>
             {props.children}
         </AuthContext.Provider>
     );

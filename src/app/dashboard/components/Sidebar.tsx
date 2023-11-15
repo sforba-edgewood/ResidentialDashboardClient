@@ -28,6 +28,11 @@ const Sidebar = () => {
                         Profile
                     </Link>
                 </li>
+                <li className="w-full border-b-2">
+                    <Link href="/dashboard/logout" className="block py-4 pl-4">
+                        Logout
+                    </Link>
+                </li>
             </ul>
         </aside>
     );

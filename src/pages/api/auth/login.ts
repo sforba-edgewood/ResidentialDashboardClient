@@ -7,7 +7,7 @@ export default async function handler(
 ) {
   try {
 
-    const serverResponse= await fetch( "http://localhost:8000/api/login", {
+    const serverResponse = await fetch( "http://localhost:8000/api/login", {
         method: "POST",
         mode: "cors", // no-cors, *cors, same-origin
         cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
@@ -19,15 +19,14 @@ export default async function handler(
     }).then((responseData)=>{ 
       return responseData.json();
     }).catch((e)=> {
-      console.log('e: ',e);
       return e;
     });
-    console.log(serverResponse);
+  
     if(serverResponse?.message === 'success') {
-
+      console.log(serverResponse.data)
       res.setHeader(
           'Set-Cookie',
-          cookie.serialize('accessToken', String(serverResponse?.body?.data), {
+          cookie.serialize('accessToken', String(serverResponse?.data), {
             httpOnly: true,
             maxAge: 60 * 60 * 24 * 7, // 1 week
             sameSite: 'strict',
