@@ -1,10 +1,24 @@
 import Link from "next/link";
+import { useRouter } from "next/navigation";
+
 const Sidebar = () => {
-    const handleLogOut = (e) => {
+    const router = useRouter();
+    const handleLogOut = async (e) => {
         e.preventDefault();
-        const response = fetch('/api/auth/logout').catch(e=> console.error(e));
-        console.log(response);
+        const logoutResponse = await fetch('/api/auth/logout').then((response)=>{
+            if(response?.status === 200) {
+                return true;
+            }   
+
+           
+        }).catch(e=> console.error(e));
+        
+        if(logoutResponse) {
+            router.push('/dashboard')
+        }
+
     }
+
     return(
         <aside id="default-sidebar"  className="min-h-screen" aria-label="Sidebar">
             <ul className="w-full">
@@ -34,9 +48,9 @@ const Sidebar = () => {
                     </Link>
                 </li>
                 <li className="w-full border-b-2">
-                    <Link onClick={(e)=>{handleLogOut(e)}} href="#" className="block py-4 pl-4">
+                    <button onClick={(e)=>{handleLogOut(e)}} className="block py-4 pl-4">
                         Logout
-                    </Link>
+                    </button>
                 </li>
             </ul>
         </aside>

@@ -1,27 +1,13 @@
 'use client';
 import { useState } from 'react';
 import { redirect } from 'next/navigation';
-
+import { AuthContext } from "@/app/providers/auth_provider";
+import { useContext, useEffect } from "react";
 
 const Index  = () => {
-    const [authenticated, setAuthenticated] = useState(false);
-    const checkAuthStatus = async () => {
-        try {
-            const response = await fetch("/api/auth/verify");
-            const data = await response.json()
-            return data?.verification;
-        } catch(e) {
-            return false;
-        }
+    const context = useContext(AuthContext);
+    const {authenticated} = context || {};
 
-    }
-    const authenticationStatus = checkAuthStatus();
-
-    authenticationStatus.then((status)=>{
-        console.log(status);
-        setAuthenticated(status);
-    })
-    
     if(authenticated) {
         redirect('/dashboard/daily');
     } else {

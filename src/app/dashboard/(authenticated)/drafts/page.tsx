@@ -1,7 +1,17 @@
 'use client';
 import DraftsTable from "@/app/dashboard/components/DraftsTable";
 import { Metric } from "@tremor/react";
+import { AuthContext } from "@/app/providers/auth_provider";
+import { useContext } from "react";
+import {redirect} from 'next/navigation';
+
 export default function Index() {
+  const context = useContext(AuthContext);
+  const {authenticated} = context || {};
+
+  if(authenticated === 'unauthenticated') {
+    redirect('/dashboard/login');
+  }
 
   return (
     <main>

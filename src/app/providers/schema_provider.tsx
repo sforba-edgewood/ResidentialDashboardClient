@@ -24,7 +24,6 @@ export const SchemaProvider = (props: any) => {
                 const schemaObjKey = schemaItem?.type?.toLowerCase();
                 schemaObj[schemaObjKey] = schemaItem;
             })
-            console.log(schemaObj);
             setFormSchema(schemaObj);
         });
     }, []);

@@ -5,8 +5,8 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-  console.log(req.cookies);
-  if(req.cookies.accessToken) {
+  if(req?.cookies?.accessToken) {
+    const token = req?.cookies?.accessToken;
     try {
       const serverResponse = await fetch( "http://localhost:8000/api/verify", {
           method: "POST",
@@ -16,7 +16,7 @@ export default async function handler(
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify(req?.cookies?.accessToken), 
+          body: JSON.stringify({token}),
       }).then((responseData)=>{ 
         return responseData.json();
       }).catch((e)=> {
@@ -24,7 +24,8 @@ export default async function handler(
       });
       res.status(200).json({ verification: true, message: 'success', error: null });
     } catch (error) {
-      res.status(error?.response?.status).send(error?.response?.message)
+      res.status(200).json({ verification: false, message: 'failed', error: error });
+      // res.status(error?.response?.status).send(error?.response?.message)
     }
   } else {
     res.status(401).json({ verification: false, message: 'failed',  error: 'authentication unsuccessful' });

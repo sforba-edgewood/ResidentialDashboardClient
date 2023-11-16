@@ -1,23 +1,22 @@
+'use server'
 import type { NextApiRequest, NextApiResponse } from 'next';
-import { cookies } from 'next/headers';
- 
+
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
   try {
-    const cookieStore = cookies();
-    const accessToken = cookieStore.get('accessToken');
-
+    const accessToken = req?.cookies?.accessToken;
+    
     if(accessToken) {
-      console.log(cookieStore)
-      cookieStore.delete('accessToken');
-
+      res.setHeader('Set-Cookie', 'accessToken=deleted; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT');
       res.status(200).json({message: 'success',data: null, error: null });
     } else {
       res.status(401).json({message: 'failed',data: null, error: "already logged out"});
     }
   } catch (err) {
+    console.log(err);
+
     res.status(500).json({ error: err});
   }
 }

@@ -5,10 +5,35 @@ export const AuthContext = createContext({});
 
 export const AuthProvider = props => {
     const router = useRouter();
-    const [authenticated, setAuthenticated] = useState(false);
+    const [authenticated, setAuthenticated] = useState('init');
     const [email, setEmail]  = useState('');
     const [password, setPassword] = useState('');
     const [loginError, setLoginError] = useState(false);
+
+    useEffect(()=>{
+        checkAuthStatus();
+    },[]);
+
+    const checkAuthStatus = async () => {
+        try {
+            await fetch("/api/auth/verify").then((verification)=>{
+        
+                if(verification?.status === 200) {
+                    setAuthenticated('authenticated');
+                } else {
+                    setAuthenticated('unauthenticated');
+                }
+            }).catch((e)=>{
+                setAuthenticated('unauthenticated');
+                console.log(e);
+            });
+
+        } catch(e) {
+            setAuthenticated('unauthenticated');
+            return false;
+        }
+
+    }
 
     const login = async () => {
         try {
@@ -40,7 +65,7 @@ export const AuthProvider = props => {
     }
 
     return(
-        <AuthContext.Provider value={{loginError, setLoginError, setEmail, setPassword, login, register}}>
+        <AuthContext.Provider value={{authenticated, loginError, setLoginError, setEmail, setPassword, login, register}}>
             {props.children}
         </AuthContext.Provider>
     );

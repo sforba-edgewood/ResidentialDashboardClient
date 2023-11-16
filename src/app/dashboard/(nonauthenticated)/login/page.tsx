@@ -1,12 +1,16 @@
 'use client';
 
 import { AuthContext } from "@/app/providers/auth_provider";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { ExclamationIcon } from "@heroicons/react/solid";
 import { Callout } from "@tremor/react";
+import { redirect } from "next/navigation";
 const Login = () => {
     const context = useContext(AuthContext);
-    const {setPassword, setEmail, login, loginError, setLoginError} = context || {};
+    const {setPassword, setEmail, login, loginError, setLoginError, authenticated} = context || {};
+    if(authenticated === 'authenticated') {
+        redirect('/dashboard/daily');
+    }
 
     const handleEmailInput = (e) => {
         const input = e.target.value;
