@@ -8,7 +8,7 @@ import {redirect} from 'next/navigation';
 
 export default function Index() {
   const context = useContext(AuthContext);
-  const {authenticated} = context || {};
+  // const {authenticated} = context || {};
 
   // if(authenticated === 'unauthenticated') {
   //   redirect('/dashboard/login');

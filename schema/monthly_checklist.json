@@ -1,8 +1,112 @@
 {
-    "fields": [
+    "monthly_fields": [
         {
-            "label": "",
+            "label": "Delinquency Report Completed on the 5th and 10th of the month",
             "name": "field_1"
+        },
+        {
+            "label": "P-card reconciliation to RPM by 1st of the month. ",
+            "name": "field_2"
+        },
+        {
+            "label": "Commission submitted to RPM by the 5th of the month",
+            "name": "field_3"
+        },
+        {
+            "label": "Market Survey has been completed by the 15th of the month",
+            "name": "field_4"
+        },
+        {
+            "label": "Variance Reports to be completed 5 calendar days after sent",
+            "name": "field_5"
+        },
+        {
+            "label": "Financial Review of occupancy, traffic, leasing, renewals and delinquency.",
+            "name": "field_6"
+        },
+        {
+            "label": "Financial review and strategy meeting with your RPM",
+            "name": "field_7"
+        },
+        {
+            "label": "Prepare 2:2 monthly meeting agenda with MM, RPM and RMM",
+            "name": "field_8"
+        },
+        {
+            "label": "Create new leasing goals (on the 25th of the prior month) and send to RPM for approval",
+            "name": "field_9"
+        },
+        {
+            "label": "Review concessions/pricing report with RPM",
+            "name": "field_10"
+        },
+        {
+            "label": "Discuss/recommend needed concessions to RPM prior to 1st of month",
+            "name": "field_11"
+        },
+        {
+            "label": "Team meeting (office & maintenance) required at least once a month. ",
+            "name": "field_12"
+        },
+        {
+            "label": "Ensure Gracehill training for associates is completed and up to date, courses/P&P to be assigned by RPM",
+            "name": "field_13"
+        },
+        {
+            "label": "Create upcoming month’s schedule",
+            "name": "field_14"
+        },
+        {
+            "label": "Ensure FAS are completed within 10 days of move-out",
+            "name": "field_15"
+        },
+        {
+            "label": "Ensure all new Move-In files are submitted to lease audit team for final approval within 24 hours of MI",
+            "name": "field_16"
+        },
+        {
+            "label": "Shop 1 competitor and update market survey",
+            "name": "field_17"
+        },
+        {
+            "label": "Walk and inspect all stale and vacant units (30 days+) and take corrective action as needed",
+            "name": "field_18"
+        },
+        {
+            "label": "Always be recruiting, review referrals, resumes, discuss with RPM",
+            "name": "field_19"
+        },
+        {
+            "label": "Review property employee hours and update as needed",
+            "name": "field_20"
+        },
+        {
+            "label": "Review the attached outline of reports due monthly",
+            "name": "field_21"
+        },
+        {
+            "label": "Review market rents and send increase request to RPM.",
+            "name": "field_22"
+        },
+        {
+            "label": "Email Jessica Egan associate’s separation/ new hire/ termination updates. ",
+            "name": "field_23"
+        },
+        {
+            "label": "Send 30/60/90 check in to HR and Jessica Egan for all new hires",
+            "name": "field_24"
+        },
+        {
+            "label": "Update the leasing goals vs actual report for current month and set next month’s leasing goals ",
+            "name": "field_25"
+        },
+        {
+            "label": "Update the monthly leasing stats report",
+            "name": "field_26"
+        },
+        {
+            "label": "Update the resident event log/broker open house log",
+            "name": "field_27"
         }
     ]
 }

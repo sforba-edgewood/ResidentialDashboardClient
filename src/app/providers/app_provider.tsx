@@ -1,7 +1,7 @@
 import { createContext,  useState, useEffect } from 'react';
 export const AppContext = createContext({});
 
-export const AppProvider = props => {
+export const AppProvider = (props:any) => {
     const [authenticated, setAuthenticated] = useState(false);
     const [loading, setLoading] = useState(false)
     
