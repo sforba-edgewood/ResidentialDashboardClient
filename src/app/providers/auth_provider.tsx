@@ -3,7 +3,7 @@ import { useRouter } from 'next/navigation';
 import { createContext,  useState, useEffect } from 'react';
 export const AuthContext = createContext({});
 
-export const AuthProvider = props => {
+export const AuthProvider = (props:any) => {
     const router = useRouter();
     const [authenticated, setAuthenticated] = useState('init');
     const [email, setEmail]  = useState('');

@@ -1,5 +1,9 @@
 
 import { createContext,  useState, useEffect } from 'react';
+import {weekly_fields} from '../../../schema/weekly_checklist.json';
+import {daily_fields} from '../../../schema/daily_checklist.json';
+import {monthly_fields} from '../../../schema/monthly_checklist.json';
+
 export const SchemaContext = createContext({});
 
 export const SchemaProvider = (props: any) => {
@@ -12,19 +16,33 @@ export const SchemaProvider = (props: any) => {
             
             return jsonResponse;
         } catch(e) {
-            console.log(e);
+
+            throw new Error("failed")
         }
     }
 
     useEffect(()=>{ 
-        fetchSchemaData().then((data)=>{
-            const {schema} = data || {};
-            const schemaObj = {}
-            schema.forEach((schemaItem)=> {
-                const schemaObjKey = schemaItem?.type?.toLowerCase();
-                schemaObj[schemaObjKey] = schemaItem;
-            })
-            setFormSchema(schemaObj);
+        const schema = fetchSchemaData();
+        schema.then((data)=>{
+     
+            const {schema, error} = data || {};
+            if(error) {
+                console.log('hello');
+                const schemaObj = {
+                    'weekly': {'fields':weekly_fields},
+                    'daily': {'fields':daily_fields},
+                    'monthly': {'fields':monthly_fields}
+                }
+                setFormSchema(schemaObj);
+            } else {
+                const schemaObj: any = {}
+                schema?.forEach((schemaItem:any)=> {
+                    const schemaObjKey = schemaItem?.type?.toLowerCase();
+                    schemaObj[schemaObjKey] = schemaItem;
+                })
+                setFormSchema(schemaObj);
+            }
+
         });
     }, []);
 

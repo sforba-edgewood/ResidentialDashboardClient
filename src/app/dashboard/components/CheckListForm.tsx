@@ -10,14 +10,14 @@ import { SchemaContext } from "@/app/providers/schema_provider";
 
 const CheckListForm = () => {
     const pathname = usePathname();
-    const formType = pathname?.split('/') && pathname?.split('/')[2];
+    const formType:any = pathname?.split('/') && pathname?.split('/')[2];
     const checklist_context = useContext(ChecklistContext);
     const schema_context = useContext(SchemaContext);
-    const {formSchema} = schema_context || {};
-    const {setValues, postDraftToAPI, postChecklistToAPI } = checklist_context || {};
+    const {formSchema}:any = schema_context || {};
+    const {setValues, postDraftToAPI, postChecklistToAPI }:any = checklist_context || {};
     
     const updateForm = (name: String) => {
-        let updatedFields = formSchema &&  formSchema[formType] && formSchema[formType].fields;
+        let updatedFields = formSchema && formSchema[formType] && formSchema[formType].fields;
         updatedFields && updatedFields?.forEach((field: any) => {
             if(field?.name === name) {
                 if(field['value']  === false) {
@@ -30,18 +30,18 @@ const CheckListForm = () => {
         setValues(updatedFields);
     }   
     
-    const handleDraftButtonClick = (e) => {
+    const handleDraftButtonClick = (e:any) => {
         e.preventDefault();
         postDraftToAPI();
     }
 
-    const handleSubmitButtonClick = (e) => {
+    const handleSubmitButtonClick = (e:any) => {
         e.preventDefault();
         postChecklistToAPI();
     }
 
     const renderFields = () => {
-        return formSchema && formSchema[formType] && formSchema[formType].fields.map((field: any)=> {
+        return formSchema && formSchema[formType] && formSchema[formType]?.fields?.map((field: any)=> {
             return (
                 <fieldset key={field?.name}>
                     <CheckListField {...field} updateForm={updateForm}/>
