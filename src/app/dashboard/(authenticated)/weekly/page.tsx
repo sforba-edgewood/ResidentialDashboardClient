@@ -10,9 +10,9 @@ export default function Index() {
   const context = useContext(AuthContext);
   const {authenticated} = context || {};
 
-  if(authenticated === 'unauthenticated') {
-    redirect('/dashboard/login');
-  }
+  // if(authenticated === 'unauthenticated') {
+  //   redirect('/dashboard/login');
+  // }
 
   return (
     <main>

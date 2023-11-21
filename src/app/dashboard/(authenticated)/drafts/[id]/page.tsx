@@ -9,7 +9,7 @@ export default function Index() {
       <Metric className="container text-center py-10">
       </Metric>
       <ChecklistProvider>
-        <CheckListForm formType={'DAILY'}/>
+        <CheckListForm />
       </ChecklistProvider>
     </main>
   )

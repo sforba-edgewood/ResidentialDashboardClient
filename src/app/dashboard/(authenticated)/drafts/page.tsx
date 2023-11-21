@@ -10,7 +10,8 @@ export default function Index() {
   const {authenticated} = context || {};
 
   if(authenticated === 'unauthenticated') {
-    redirect('/dashboard/login');
+    console.log('hello world');
+    // redirect('/dashboard/login');
   }
 
   return (

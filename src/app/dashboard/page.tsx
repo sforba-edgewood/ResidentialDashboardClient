@@ -8,11 +8,12 @@ const Index  = () => {
     const context = useContext(AuthContext);
     const {authenticated} = context || {};
 
-    if(authenticated) {
-        redirect('/dashboard/daily');
-    } else {
-        redirect('/dashboard/login');
-    }
+    return redirect('/dashboard/daily');
+    // if(authenticated) {
+    //     redirect('/dashboard/daily');
+    // } else {
+    //     redirect('/dashboard/login');
+    // }
 }
 
 export default Index;

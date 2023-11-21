@@ -3,6 +3,7 @@ import { usePathname } from 'next/navigation';
 import { Grid, Col } from "@tremor/react";
 import { Button } from "@tremor/react";
 import NotesField from "./NotesField";
+import ChecklistDate from "./CheckListDate";
 import { useContext } from "react";
 import { ChecklistContext } from "../../providers/checklist_provider";
 import { SchemaContext } from "@/app/providers/schema_provider";
@@ -51,6 +52,7 @@ const CheckListForm = () => {
     }
     return (
         <form className="container mx-auto">
+            <ChecklistDate />
             <Grid numItems={1} numItemsSm={1} numItemsLg={1} className="gap-2">
                 {renderFields()}
             </Grid>
