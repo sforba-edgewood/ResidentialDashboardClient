@@ -11,8 +11,9 @@ import { SchemaContext } from "@/app/providers/schema_provider";
 const CheckListForm = () => {
     const pathname = usePathname();
     const formType: string | undefined = pathname?.split('/') && pathname?.split('/')[2];
-    const checklist_context = useContext(ChecklistContext);
-    const schema_context = useContext(SchemaContext);
+    const checklist_context = useContext(ChecklistContext) as ChecklistContextFields;
+    const schema_context = useContext(SchemaContext) as SchemaContextFields;
+
     const {formSchema}= schema_context;
 
     const {setValues, postDraftToAPI, postChecklistToAPI }:any = checklist_context || {};

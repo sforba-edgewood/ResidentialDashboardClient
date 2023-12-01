@@ -13,6 +13,17 @@ type AuthContextFields = {
     register: () => {},
 }
 
+type ChecklistContextFields = {
+    values: object,
+    submitDate: StringConstructor,
+    setValues: ()=> {},  
+    setSubmiteDate: ()=> {},  
+    postChecklistToAPI: ()=> {},  
+    postDraftToAPI: ()=> {},
+}
+type SchemaContextFields = {
+    formSchema: FormSchema
+}
 type FormSchema = {
     daily: FormSchemaField[],
     weekly: FormSchemaField[],
