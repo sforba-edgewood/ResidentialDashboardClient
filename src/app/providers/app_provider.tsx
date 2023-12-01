@@ -1,9 +1,9 @@
-import { createContext,  useState, useEffect } from 'react';
+import { createContext,  useState, useEffect, PropsWithChildren } from 'react';
 export const AppContext = createContext({});
 
-export const AppProvider = (props:any) => {
-    const [authenticated, setAuthenticated] = useState(false);
-    const [loading, setLoading] = useState(false)
+export const AppProvider = ({ children }: PropsWithChildren<{}>) => {
+    const [authenticated, setAuthenticated] = useState<boolean>(false);
+    const [loading, setLoading] = useState<boolean>(false)
     
     const verify = async () => {
         try {
@@ -20,7 +20,7 @@ export const AppProvider = (props:any) => {
     }, [])
     return(
         <AppContext.Provider value={{loading, setLoading, authenticated, setAuthenticated}}>
-            {props.children}
+            {children}
         </AppContext.Provider>
     );
 }

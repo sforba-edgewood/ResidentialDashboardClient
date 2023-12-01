@@ -3,7 +3,8 @@ import { useRouter } from "next/navigation";
 
 const Sidebar = () => {
     const router = useRouter();
-    const handleLogOut = async (e:any) => {
+
+    const handleLogOut = async (e: React.MouseEvent): Promise<any> => {
         e.preventDefault();
         const logoutResponse = await fetch('/api/auth/logout').then((response)=>{
             if(response?.status === 200) {

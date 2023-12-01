@@ -5,7 +5,8 @@ import { AuthProvider } from "@/app/providers/auth_provider";
 import '../../globals.css'
 import Header from '../../Header'
 import Sidebar from '../components/Sidebar'
-import { redirect } from "next/navigation";
+// import { redirect } from "next/navigation";
+
 export default function DashboardLayout({
   children,
 }: {

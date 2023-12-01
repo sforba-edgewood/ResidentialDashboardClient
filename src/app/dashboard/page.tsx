@@ -6,7 +6,7 @@ import { useContext, useEffect } from "react";
 
 const Index  = () => {
     const context = useContext(AuthContext);
-    const {authenticated}:any = context || {};
+    const {authenticated} = context;
 
     return redirect('/dashboard/daily');
     // if(authenticated) {

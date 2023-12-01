@@ -1,13 +1,13 @@
 
-import { createContext,  useState, useEffect } from 'react';
+import { createContext,  useState, useEffect, PropsWithChildren  } from 'react';
 import {weekly_fields} from '../../../schema/weekly_checklist.json';
 import {daily_fields} from '../../../schema/daily_checklist.json';
 import {monthly_fields} from '../../../schema/monthly_checklist.json';
 
 export const SchemaContext = createContext({});
 
-export const SchemaProvider = (props: any) => {
-    const [formSchema, setFormSchema] = useState({});
+export const SchemaProvider = ({ children }: PropsWithChildren<{}>) => {
+    const [formSchema, setFormSchema] = useState<FormSchema>({});
 
     const fetchSchemaData = async () => {
         try {
@@ -23,11 +23,11 @@ export const SchemaProvider = (props: any) => {
 
     useEffect(()=>{ 
         const schema = fetchSchemaData();
+
         schema.then((data)=>{
      
             const {schema, error} = data || {};
             if(error) {
-                console.log('hello');
                 const schemaObj = {
                     'weekly': {'fields':weekly_fields},
                     'daily': {'fields':daily_fields},
@@ -48,7 +48,7 @@ export const SchemaProvider = (props: any) => {
 
     return (
         <SchemaContext.Provider value={{formSchema}}>
-            {props.children}
+            {children}
         </SchemaContext.Provider>
     );
 }

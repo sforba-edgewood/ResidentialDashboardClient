@@ -1,14 +1,14 @@
 'use client';
 import { useRouter } from 'next/navigation';
-import { createContext,  useState, useEffect } from 'react';
+import { createContext,  useState, useEffect, PropsWithChildren } from 'react';
 export const AuthContext = createContext({});
 
-export const AuthProvider = (props:any) => {
+export const AuthProvider = ({ children }: PropsWithChildren<{}>) => {
     const router = useRouter();
-    const [authenticated, setAuthenticated] = useState('init');
-    const [email, setEmail]  = useState('');
-    const [password, setPassword] = useState('');
-    const [loginError, setLoginError] = useState(false);
+    const [authenticated, setAuthenticated] = useState<string>('init');
+    const [email, setEmail]  = useState<string>('');
+    const [password, setPassword] = useState<string>('');
+    const [loginError, setLoginError] = useState<boolean>(false);
 
     useEffect(()=>{
         checkAuthStatus();
@@ -66,7 +66,7 @@ export const AuthProvider = (props:any) => {
 
     return(
         <AuthContext.Provider value={{authenticated, loginError, setLoginError, setEmail, setPassword, login, register}}>
-            {props.children}
+            {children}
         </AuthContext.Provider>
     );
 }

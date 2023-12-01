@@ -1,8 +1,8 @@
 
-import { createContext,  useState, useEffect } from 'react';
+import { createContext,  useState,  PropsWithChildren } from 'react';
 export const ChecklistContext = createContext({});
 
-export const ChecklistProvider = (props: any) => {
+export const ChecklistProvider = ({ children }: PropsWithChildren<{}>) => {
     const [values, setValues] = useState({});
     const [submitDate, setSubmiteDate] = useState(new Date());
 
@@ -41,7 +41,7 @@ export const ChecklistProvider = (props: any) => {
 
     return (
         <ChecklistContext.Provider value={{values, setValues, submitDate, setSubmiteDate, postChecklistToAPI, postDraftToAPI}}>
-            {props.children}
+            {children}
         </ChecklistContext.Provider>
     );
 }

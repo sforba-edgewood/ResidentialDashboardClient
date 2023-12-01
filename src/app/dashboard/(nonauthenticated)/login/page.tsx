@@ -13,17 +13,17 @@ const Login = () => {
     //     redirect('/dashboard/daily');
     // }
 
-    const handleEmailInput = (e: any) => {
-        const input = e.target.value;
+    const handleEmailInput = (e: React.FormEvent<HTMLInputElement>): void => {
+        const input = e.currentTarget.value;
         setEmail(input);
     }
 
-    const handlePasswordInput = (e:any) => {
-        const input = e.target.value;
+    const handlePasswordInput = (e: React.FormEvent<HTMLInputElement>): void => {
+        const input = e.currentTarget.value;
         setPassword(input);
     }
 
-    const handleSubmit = async (e:any) => {
+    const handleSubmit = async (e: React.SyntheticEvent)=> {
         e.preventDefault();
         setLoginError(false);
         login();
