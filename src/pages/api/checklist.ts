@@ -4,7 +4,7 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-  console.log(req)
+
   try {
     if (req.method == 'POST') {
       const data = JSON.parse(req.body);

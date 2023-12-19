@@ -2,12 +2,11 @@ import CheckListField from "./CheckListField";
 import { usePathname } from 'next/navigation';
 import { Grid, Col } from "@tremor/react";
 import { Button } from "@tremor/react";
-import NotesField from "./NotesField";
 import ChecklistDate from "./CheckListDate";
 import { useContext } from "react";
 import { ChecklistContext } from "../../providers/checklist_provider";
 import { SchemaContext } from "@/app/providers/schema_provider";
-
+import DocumentUpload from "./DocumentUpload";
 const CheckListForm = () => {
     const pathname = usePathname();
     const formType: string | undefined = pathname?.split('/') && pathname?.split('/')[2];
@@ -21,7 +20,7 @@ const CheckListForm = () => {
     const updateForm = (name: String) => {
         if(!formType || formSchema) return false;
 
-        let updatedFields = formSchema && formSchema[formType] && formSchema[formType].fields;
+        let updatedFields = formSchema && formSchema[formType] && formSchema[formType]?.fields;
         updatedFields && updatedFields?.forEach((field: any) => {
             if(field?.name === name) {
                 if(field['value']  === false) {
@@ -61,8 +60,9 @@ const CheckListForm = () => {
             <ChecklistDate />
             <Grid numItems={1} numItemsSm={1} numItemsLg={1} className="gap-2">
                 {renderFields()}
+                <DocumentUpload />
             </Grid>
-            <NotesField />
+
             <div className="flex flex-row justify-center py-4">
                 <Button onClick={handleDraftButtonClick} size="xl" className="mx-2">Save to Drafts</Button>
                 <Button onClick={handleSubmitButtonClick } size="xl"className="mx-2">Submit</Button>
