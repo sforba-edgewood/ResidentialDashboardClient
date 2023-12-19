@@ -36,6 +36,6 @@ export default async function handler(
     
   } catch (err) {
     console.log(err);
-    res.status(500).json({ error: 'failed to load data' })
+    res.status(500).json({ error: 'failed to load data' });
   }
 }

@@ -10,9 +10,16 @@ const CheckListField = (props: any) => {
 
     const handleSwitchChange = (value: boolean) => {
       setIsSwitchOn(value);
-      updateForm(name);
+      updateForm(name, null);
     };
 
+    const handleNotes = (e: React.SyntheticEvent)=> {
+        e.preventDefault();
+        const target = e.target;
+        const notes = target?.value;
+        updateForm(name, notes);
+
+    }
     return(
         <Card className="max-w-4xl mx-auto my-1 h-auto">
             <label htmlFor={name} className="text-sm text-gray-500">
@@ -25,8 +32,9 @@ const CheckListField = (props: any) => {
                     Notes
                 </label>
                 <Textarea
-                id={`notes_for__${name}`}
-                placeholder="Start typing here..."
+                    onChange={handleNotes}
+                    id={`notes_for__${name}`}
+                    placeholder="Start typing here..."
                 />
             </div>
         </Card>

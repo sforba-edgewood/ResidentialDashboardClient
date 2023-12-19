@@ -7,6 +7,7 @@ import { useContext } from "react";
 import { ChecklistContext } from "../../providers/checklist_provider";
 import { SchemaContext } from "@/app/providers/schema_provider";
 import DocumentUpload from "./DocumentUpload";
+
 const CheckListForm = () => {
     const pathname = usePathname();
     const formType: string | undefined = pathname?.split('/') && pathname?.split('/')[2];
@@ -15,19 +16,24 @@ const CheckListForm = () => {
 
     const {formSchema}= schema_context;
 
-    const {setValues, postDraftToAPI, postChecklistToAPI }:any = checklist_context || {};
+    const {setValues, setSubmitDate, submitDate, setFilesToUpload,  postDraftToAPI, postChecklistToAPI }:any = checklist_context || {};
     
-    const updateForm = (name: String) => {
-        if(!formType || formSchema) return false;
+    const updateForm = (name: String, notes: String | null) => {
+        if(!formType || !formSchema) return false;
 
         let updatedFields = formSchema && formSchema[formType] && formSchema[formType]?.fields;
         updatedFields && updatedFields?.forEach((field: any) => {
             if(field?.name === name) {
-                if(field['value']  === false) {
-                    field['value'] = false;
+                if(notes) {
+                    field['notes'] = notes;
                 } else {
-                    field['value'] = true;
+                    if(field['value']  === false) {
+                        field['value'] = false;
+                    } else {
+                        field['value'] = true;
+                    }
                 }
+
             }
         });
         setValues(updatedFields);
@@ -35,12 +41,21 @@ const CheckListForm = () => {
     
     const handleDraftButtonClick =(e:  React.MouseEvent): void => {
         e.preventDefault();
-        postDraftToAPI();
+        console.log(submitDate);
+        if(submitDate) {
+            postDraftToAPI();
+        }
+
     }
 
     const handleSubmitButtonClick = (e: React.MouseEvent): void  => {
         e.preventDefault();
-        postChecklistToAPI();
+        console.log(submitDate);
+        if(submitDate) {
+            postChecklistToAPI();
+        }
+
+
     }
 
     const renderFields = () => {
@@ -57,10 +72,10 @@ const CheckListForm = () => {
     }
     return (
         <form className="container mx-auto">
-            <ChecklistDate />
+            <ChecklistDate setSubmitDate={setSubmitDate}/>
             <Grid numItems={1} numItemsSm={1} numItemsLg={1} className="gap-2">
                 {renderFields()}
-                <DocumentUpload />
+                <DocumentUpload  setFilesToUpload={setFilesToUpload}/>
             </Grid>
 
             <div className="flex flex-row justify-center py-4">

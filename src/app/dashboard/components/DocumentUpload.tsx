@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 
-const DocumentUpload = () => {
+const DocumentUpload = (props: any) => {
+    const {setFilesToUpload} = props;
+
     const [files, setFiles] = useState<Array<File>>([]);
 
     const _handleUpload = async (e:  React.ChangeEvent) => {
@@ -13,6 +15,7 @@ const DocumentUpload = () => {
 
     useEffect(()=>{
         console.log(files);
+        setFilesToUpload(files);
     }, [files]);
 
     const renderFiles = () => {

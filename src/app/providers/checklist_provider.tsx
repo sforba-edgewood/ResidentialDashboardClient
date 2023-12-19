@@ -4,17 +4,24 @@ export const ChecklistContext = createContext({});
 
 export const ChecklistProvider = ({ children }: PropsWithChildren<{}>) => {
     const [values, setValues] = useState({});
-    const [submitDate, setSubmiteDate] = useState(new Date());
+    const [filesToUpload, setFilesToUpload] = useState([]);
+    const [submitDate, setSubmitDate] = useState<Date | null>(null);
 
 
     const postChecklistToAPI = async () => {
+        const submission_package = {
+            "submit_date": submitDate,
+            "values": values,
+            "documents": filesToUpload
+        }
+
         try {
             const response = await fetch("/api/checklist", {
                 method: 'POST',
                 headers: {
                     "Content-Type": "application/json",
                 },
-                body: JSON.stringify(values)
+                body: JSON.stringify(submission_package)
             });
             console.log(response)
             
@@ -40,7 +47,7 @@ export const ChecklistProvider = ({ children }: PropsWithChildren<{}>) => {
     }
 
     return (
-        <ChecklistContext.Provider value={{values, setValues, submitDate, setSubmiteDate, postChecklistToAPI, postDraftToAPI}}>
+        <ChecklistContext.Provider value={{values, setValues, submitDate, setSubmitDate, setFilesToUpload, postChecklistToAPI, postDraftToAPI}}>
             {children}
         </ChecklistContext.Provider>
     );
