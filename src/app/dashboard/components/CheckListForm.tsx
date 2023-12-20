@@ -41,7 +41,6 @@ const CheckListForm = () => {
     
     const handleDraftButtonClick =(e:  React.MouseEvent): void => {
         e.preventDefault();
-        console.log(submitDate);
         if(submitDate) {
             postDraftToAPI();
         }
@@ -50,7 +49,6 @@ const CheckListForm = () => {
 
     const handleSubmitButtonClick = (e: React.MouseEvent): void  => {
         e.preventDefault();
-        console.log(submitDate);
         if(submitDate) {
             postChecklistToAPI();
         }

@@ -7,12 +7,26 @@ export const ChecklistProvider = ({ children }: PropsWithChildren<{}>) => {
     const [filesToUpload, setFilesToUpload] = useState([]);
     const [submitDate, setSubmitDate] = useState<Date | null>(null);
 
+    const convertImagetoBase64 = (file: File) => {
+        return new Promise((resolve, reject)=>{
+            let fileReader = new FileReader();
 
+            fileReader.onloadend = () => {
+                return resolve({data:fileReader.result, name:file.name, size: file.size, type: file.type});
+            }
+            fileReader.readAsDataURL(file);
+        });
+
+
+    }
     const postChecklistToAPI = async () => {
+
+        const imagesArrayBuffer = await Promise.all(filesToUpload.map(f=>{return convertImagetoBase64 (f)}));
+
         const submission_package = {
             "submit_date": submitDate,
             "values": values,
-            "documents": filesToUpload
+            "documents": imagesArrayBuffer
         }
 
         try {

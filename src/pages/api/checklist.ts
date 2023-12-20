@@ -7,8 +7,7 @@ export default async function handler(
 
   try {
     if (req.method == 'POST') {
-      const data = JSON.parse(req.body);
-      console.log(data);
+      const data = req.body;
       const response = await fetch( "http://localhost:8000/api/checklist", {
           method: "POST",
           mode: "cors", // no-cors, *cors, same-origin
@@ -20,7 +19,7 @@ export default async function handler(
           body: JSON.stringify(data), 
       });
       const checklistJson = await response.json();
-      console.log(checklistJson);
+
       res.status(200).json({message: 'success', data: checklistJson, error: null});
         
     }

@@ -14,7 +14,6 @@ const DocumentUpload = (props: any) => {
     }
 
     useEffect(()=>{
-        console.log(files);
         setFilesToUpload(files);
     }, [files]);
 
@@ -30,7 +29,6 @@ const DocumentUpload = (props: any) => {
         }
 
         return files && files.map((file: File)=> {
-            console.log(file);
             const url =  URL.createObjectURL(file);
             const acceptedFileTypes = ['image/gif', 'image/jpeg', 'image/png', 'application/pdf'];
             const isImage = file && acceptedFileTypes.includes(file['type']);
