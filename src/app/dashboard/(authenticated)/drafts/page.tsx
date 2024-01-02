@@ -7,12 +7,12 @@ import {redirect} from 'next/navigation';
 
 export default function Index() {
   const context = useContext(AuthContext);
-  // const {authenticated} = context || {};
+  const {authenticated} = context || {};
 
-  // if(authenticated === 'unauthenticated') {
-  //   console.log('hello world');
-  //   redirect('/dashboard/login');
-  // }
+  if(authenticated === 'unauthenticated') {
+    console.log('hello world');
+    redirect('/dashboard/login');
+  }
 
   return (
     <main>

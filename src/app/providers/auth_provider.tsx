@@ -6,8 +6,8 @@ export const AuthContext = createContext({});
 export const AuthProvider = ({ children }: PropsWithChildren<{}>) => {
     const router = useRouter();
     const [authenticated, setAuthenticated] = useState<string>('init');
-    const [email, setEmail]  = useState<string>('');
-    const [password, setPassword] = useState<string>('');
+    const [loginData, setLoginData]  = useState({email: "", password: ""});
+    const [registrationData, setRegistrationData]  =  useState({email: "", password: "", name: "", role: "USER"});
     const [loginError, setLoginError] = useState<boolean>(false);
 
     useEffect(()=>{
@@ -58,14 +58,32 @@ export const AuthProvider = ({ children }: PropsWithChildren<{}>) => {
     }
 
     const register = async () => {
-
+        try {
+            const response = await fetch("/api/auth/register", {
+                method: 'POST',
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({email, password})
+            });
+            
+            if(response.status === 401) {
+                setLoginError(true);
+            } else {
+                router.push('/dashboard/daily')
+            }
+            
+        } catch(e) {
+            console.error('error: ', e);
+            setLoginError(true);
+        }
     }
 
     const forgotPassword = async () => {
     }
 
     return(
-        <AuthContext.Provider value={{authenticated, loginError, setLoginError, setEmail, setPassword, login, register}}>
+        <AuthContext.Provider value={{authenticated, loginError, setLoginData,  setRegistrationData, setLoginError, login, register}}>
             {children}
         </AuthContext.Provider>
     );

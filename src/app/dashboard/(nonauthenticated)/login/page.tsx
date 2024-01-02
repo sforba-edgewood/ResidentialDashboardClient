@@ -1,17 +1,20 @@
 'use client';
 
 import { AuthContext } from "@/app/providers/auth_provider";
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import { ExclamationIcon } from "@heroicons/react/solid";
 import { Callout } from "@tremor/react";
 import { redirect } from "next/navigation";
 import Link from "next/link";
 const Login = () => {
+    const [email, setEmail]  = useState<string>('');
+    const [password, setPassword] = useState<string>('');
+
     const context = useContext(AuthContext);
-    const {setPassword, setEmail, login, loginError, setLoginError, authenticated}: any = context || {};
-    // if(authenticated === 'authenticated') {
-    //     redirect('/dashboard/daily');
-    // }
+    const {setLoginData, login, loginError, setLoginError, authenticated}: any = context || {};
+    if(authenticated === 'authenticated') {
+        redirect('/dashboard/daily');
+    }
 
     const handleEmailInput = (e: React.FormEvent<HTMLInputElement>): void => {
         const input = e.currentTarget.value;
@@ -26,6 +29,9 @@ const Login = () => {
     const handleSubmit = async (e: React.SyntheticEvent)=> {
         e.preventDefault();
         setLoginError(false);
+        setLoginData({
+            email, password
+        });
         login();
     }
 
