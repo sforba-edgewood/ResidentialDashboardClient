@@ -1,8 +1,9 @@
 import CheckListField from "./CheckListField";
 import { usePathname } from 'next/navigation';
-import { Grid, Col } from "@tremor/react";
+import { Grid} from "@tremor/react";
 import { Button } from "@tremor/react";
 import ChecklistDate from "./CheckListDate";
+import PropertySelect from "./PropertySelect";
 import { useContext } from "react";
 import { ChecklistContext } from "../../providers/checklist_provider";
 import { SchemaContext } from "@/app/providers/schema_provider";
@@ -16,7 +17,7 @@ const CheckListForm = () => {
 
     const {formSchema}= schema_context;
 
-    const {setValues, setSubmitDate, submitDate, setFilesToUpload,  postDraftToAPI, postChecklistToAPI }:any = checklist_context || {};
+    const {setProperty, setValues, setSubmitDate, submitDate, setFilesToUpload,  postDraftToAPI, postChecklistToAPI }:any = checklist_context || {};
     
     const updateForm = (name: String, notes: String | null) => {
         if(!formType || !formSchema) return false;
@@ -52,8 +53,6 @@ const CheckListForm = () => {
         if(submitDate) {
             postChecklistToAPI();
         }
-
-
     }
 
     const renderFields = () => {
@@ -71,6 +70,9 @@ const CheckListForm = () => {
     return (
         <form className="container mx-auto">
             <ChecklistDate setSubmitDate={setSubmitDate}/>
+            <div className="container mx-auto my-4 max-w-4xl">
+                <PropertySelect setProperty={setProperty}/>
+            </div>
             <Grid numItems={1} numItemsSm={1} numItemsLg={1} className="gap-2">
                 {renderFields()}
                 <DocumentUpload  setFilesToUpload={setFilesToUpload}/>

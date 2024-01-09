@@ -27,7 +27,8 @@ export const SchemaProvider = ({ children }: PropsWithChildren<{}>) => {
         schema.then((data)=>{
      
             const {schema, error} = data || {};
-            if(error) {
+
+            if(error || schema?.length < 1) {
                 const schemaObj = {
                     'weekly': {'fields':weekly_fields},
                     'daily': {'fields':daily_fields},

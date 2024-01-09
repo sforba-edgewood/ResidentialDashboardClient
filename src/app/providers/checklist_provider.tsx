@@ -1,8 +1,13 @@
 
-import { createContext,  useState,  PropsWithChildren } from 'react';
+import { createContext,  useState,  useContext, PropsWithChildren } from 'react';
+import { AuthContext } from './auth_provider';
 export const ChecklistContext = createContext({});
 
 export const ChecklistProvider = ({ children }: PropsWithChildren<{}>) => {
+    const auth_data = useContext(AuthContext);
+    const {currentUser} =  auth_data;
+
+    const [property, setProperty] = useState<string>('');
     const [values, setValues] = useState({});
     const [filesToUpload, setFilesToUpload] = useState([]);
     const [submitDate, setSubmitDate] = useState<Date | null>(null);
@@ -22,13 +27,17 @@ export const ChecklistProvider = ({ children }: PropsWithChildren<{}>) => {
     const postChecklistToAPI = async () => {
 
         const imagesArrayBuffer = await Promise.all(filesToUpload.map(f=>{return convertImagetoBase64 (f)}));
+        const {userEmail} = currentUser || {};
 
         const submission_package = {
-            "submit_date": submitDate,
+            "propertyCode": property,
+            "userEmail": userEmail,
+            "checklistType": "",
+            "submitDate": submitDate,
             "values": values,
             "documents": imagesArrayBuffer
         }
-
+        console.log(submission_package);
         try {
             const response = await fetch("/api/checklist", {
                 method: 'POST',
@@ -37,7 +46,6 @@ export const ChecklistProvider = ({ children }: PropsWithChildren<{}>) => {
                 },
                 body: JSON.stringify(submission_package)
             });
-            console.log(response)
             
         } catch(e) {
             console.log(e);
@@ -53,7 +61,7 @@ export const ChecklistProvider = ({ children }: PropsWithChildren<{}>) => {
                 },
                 body: JSON.stringify(values)
             });
-            console.log(response)
+           
             
         } catch(e) {
             console.log(e);
@@ -61,7 +69,7 @@ export const ChecklistProvider = ({ children }: PropsWithChildren<{}>) => {
     }
 
     return (
-        <ChecklistContext.Provider value={{values, setValues, submitDate, setSubmitDate, setFilesToUpload, postChecklistToAPI, postDraftToAPI}}>
+        <ChecklistContext.Provider value={{property, setProperty, values, setValues, submitDate, setSubmitDate, setFilesToUpload, postChecklistToAPI, postDraftToAPI}}>
             {children}
         </ChecklistContext.Provider>
     );
