@@ -4,7 +4,7 @@ import { Grid} from "@tremor/react";
 import { Button } from "@tremor/react";
 import ChecklistDate from "./CheckListDate";
 import PropertySelect from "./PropertySelect";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { ChecklistContext } from "../../providers/checklist_provider";
 import { SchemaContext } from "@/app/providers/schema_provider";
 import DocumentUpload from "./DocumentUpload";
@@ -16,8 +16,12 @@ const CheckListForm = () => {
     const schema_context = useContext(SchemaContext) as SchemaContextFields;
 
     const {formSchema}= schema_context;
+    const {setChecklistType, setProperty, setValues, setSubmitDate, submitDate, setFilesToUpload,  postDraftToAPI, postChecklistToAPI }:any = checklist_context || {};
 
-    const {setProperty, setValues, setSubmitDate, submitDate, setFilesToUpload,  postDraftToAPI, postChecklistToAPI }:any = checklist_context || {};
+    useEffect(()=>{
+        setChecklistType(formType);
+    },[]);
+
     
     const updateForm = (name: String, notes: String | null) => {
         if(!formType || !formSchema) return false;
@@ -56,7 +60,8 @@ const CheckListForm = () => {
     }
 
     const renderFields = () => {
-        if(!formType || !formSchema) return false;
+        if(!formType || !formSchema)
+         return false;
 
         return formSchema && formSchema[formType] && formSchema[formType]?.fields?.map((field: FormSchemaField)=> {
             return (

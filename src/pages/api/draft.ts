@@ -7,7 +7,6 @@ export default async function handler(
   try {
 
     if (req.method == 'POST') {
-      console.log(req.body);
       const response = await fetch( "http://localhost:8000/api/draft", {
           method: "POST",
           mode: "cors", // no-cors, *cors, same-origin
@@ -19,7 +18,6 @@ export default async function handler(
           body: JSON.stringify(req.body), 
       });
       const draftJson = await response.json();
-      console.log(draftJson);
     }
     if (req.method == 'GET') {
       const response = await fetch("http://localhost:8000/api/draft");

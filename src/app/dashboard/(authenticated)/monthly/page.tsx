@@ -2,7 +2,6 @@
 import {ChecklistProvider} from "@/app/providers/checklist_provider";
 import CheckListForm from "@/app/dashboard/components/CheckListForm";
 import {Metric } from "@tremor/react";
-import {redirect} from 'next/navigation';
 
 export default function Index() {
 

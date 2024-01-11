@@ -23,6 +23,7 @@ export const AuthProvider = ({ children }: PropsWithChildren<{}>) => {
                 return json;
             });
             const {verification, user} = auth_check;
+
             if(verification) {
                 setCurrentUser(user);
                 setAuthenticated('authenticated');

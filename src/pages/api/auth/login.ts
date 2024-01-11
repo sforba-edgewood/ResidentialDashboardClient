@@ -23,7 +23,6 @@ export default async function handler(
     });
   
     if(serverResponse?.message === 'success') {
-      console.log(serverResponse.data)
       res.setHeader(
           'Set-Cookie',
           cookie.serialize('accessToken', String(serverResponse?.data), {

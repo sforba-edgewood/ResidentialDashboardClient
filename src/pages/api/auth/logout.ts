@@ -15,7 +15,7 @@ export default async function handler(
       res.status(401).json({message: 'failed',data: null, error: "already logged out"});
     }
   } catch (err) {
-    console.log(err);
+    console.error(err);
 
     res.status(500).json({ error: err});
   }

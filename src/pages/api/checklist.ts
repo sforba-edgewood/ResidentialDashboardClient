@@ -8,7 +8,6 @@ export default async function handler(
   try {
     if (req.method == 'POST') {
       const data = req.body;
-      console.log('endpoint data: ', data);
       const response = await fetch( "http://localhost:8000/api/checklist", {
           method: "POST",
           mode: "cors", // no-cors, *cors, same-origin
@@ -27,7 +26,6 @@ export default async function handler(
     if (req.method == 'GET') {
       const response = await fetch( "http://localhost:8000/api/checklist");
       const checklistJson = await response.json();
-      console.log(checklistJson);
       res.status(200).json({message: 'success', data: checklistJson, error: null});
     }
 
@@ -35,7 +33,7 @@ export default async function handler(
     
     
   } catch (err) {
-    console.log(err);
+    console.error(err);
     res.status(500).json({ error: 'failed to load data' });
   }
 }

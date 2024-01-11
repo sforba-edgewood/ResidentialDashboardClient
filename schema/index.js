@@ -1,5 +1,4 @@
 const daily_data = import('./daily_checklist.json').then((data)=> {
-    console.log(data);
     return data?.fields;
 });
 

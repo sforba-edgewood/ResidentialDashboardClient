@@ -5,9 +5,11 @@ export const ChecklistContext = createContext({});
 
 export const ChecklistProvider = ({ children }: PropsWithChildren<{}>) => {
     const auth_data = useContext(AuthContext);
-    const {currentUser} =  auth_data;
+
+    const {currentUser} =  auth_data || {};
 
     const [property, setProperty] = useState<string>('');
+    const [checklistType, setChecklistType] = useState<string>('');
     const [values, setValues] = useState({});
     const [filesToUpload, setFilesToUpload] = useState([]);
     const [submitDate, setSubmitDate] = useState<Date | null>(null);
@@ -30,14 +32,13 @@ export const ChecklistProvider = ({ children }: PropsWithChildren<{}>) => {
         const {userEmail} = currentUser || {};
 
         const submission_package = {
+            "checklistType": checklistType.toLocaleUpperCase(),
             "propertyCode": property,
             "userEmail": userEmail,
-            "checklistType": "",
             "submitDate": submitDate,
             "values": values,
             "documents": imagesArrayBuffer
         }
-        console.log(submission_package);
         try {
             const response = await fetch("/api/checklist", {
                 method: 'POST',
@@ -48,7 +49,7 @@ export const ChecklistProvider = ({ children }: PropsWithChildren<{}>) => {
             });
             
         } catch(e) {
-            console.log(e);
+            console.error(e);
         }
     }
 
@@ -64,12 +65,25 @@ export const ChecklistProvider = ({ children }: PropsWithChildren<{}>) => {
            
             
         } catch(e) {
-            console.log(e);
+            console.error(e);
         }
     }
 
+    const provider_values = {
+        property, 
+        setProperty, 
+        values, 
+        setValues, 
+        submitDate, 
+        setSubmitDate, 
+        setFilesToUpload, 
+        postChecklistToAPI, 
+        postDraftToAPI, 
+        setChecklistType
+    };
+
     return (
-        <ChecklistContext.Provider value={{property, setProperty, values, setValues, submitDate, setSubmitDate, setFilesToUpload, postChecklistToAPI, postDraftToAPI}}>
+        <ChecklistContext.Provider value={provider_values}>
             {children}
         </ChecklistContext.Provider>
     );

@@ -22,10 +22,14 @@ export default async function handler(
       }).catch((e)=> {
         return e;
       });
+      const {status, data} = serverResponse || {};
+      const {userEmail, userFullName} = data || {};
+      if(status === 200) {
+        res.status(200).json({ verification: true, user: {userEmail, userFullName}, message: 'success', error: null });
+      } else {
+        res.status(401).json({ verification: false, user: {}, message: 'failed', error: null });
 
-      const {userEmail, userFullName} = serverResponse?.data || {};
-      console.log(serverResponse);
-      res.status(200).json({ verification: true, user: {userEmail, userFullName}, message: 'success', error: null });
+      }
     } catch (error) {
       res.status(401).json({ verification: false, message: 'failed', error: error });
     }

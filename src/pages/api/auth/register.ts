@@ -4,7 +4,6 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-  console.log(req.body);
   try {
     const serverResponse = await fetch( "http://localhost:8000/api/register", {
       method: "POST",
